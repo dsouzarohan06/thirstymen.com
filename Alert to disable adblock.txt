@@ -1,0 +1,33 @@
+<div class="afs_ads">&nbsp;</div>
+<script>
+(function() {
+    var message = "We have detected that you are using adblock on your web browser. Please disable adblock or simply disable your ad blocker only on ‘ThirstyMen.com‘ and reload this page to hide this.";
+        // Define a function for showing the message.
+        // Set a timeout of 2 seconds to give adblocker
+        // a chance to do its thing
+        var tryMessage = function() {
+            setTimeout(function() {
+                if(!document.getElementsByClassName) return;
+                var ads = document.getElementsByClassName('afs_ads'),
+                    ad  = ads[ads.length - 1];
+
+                if(!ad
+                    || ad.innerHTML.length == 0
+                    || ad.clientHeight === 0) {
+                    alert(message);
+                    window.location.href = "http://www.thirstymen.com/";
+                } else {
+                    ad.style.display = 'none';
+                }
+
+            }, 2000);
+        }
+
+        /* Attach a listener for page load ... then show the message */
+        if(window.addEventListener) {
+            window.addEventListener('load', tryMessage, false);
+        } else {
+            window.attachEvent('onload', tryMessage); //IE
+        }
+})();
+</script>
